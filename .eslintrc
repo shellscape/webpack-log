@@ -1,9 +1,3 @@
 {
-  "extends": ["webpack", "prettier"],
-  "parserOptions": {
-    "sourceType": "script"
-  },
-  "rules": {
-    "strict": ["error", "safe"]
-  }
+  "extends": "shellscape"
 }
