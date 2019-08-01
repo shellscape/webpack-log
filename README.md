@@ -1,102 +1,103 @@
-[![npm][npm]][npm-url]
-[![node][node]][node-url]
-[![deps][deps]][deps-url]
-[![test][test]][test-url]
-[![coverage][cover]][cover-url]
-[![chat][chat]][chat-url]
+[tests]: 	https://img.shields.io/circleci/project/github/shellscape/webpack-log.svg
+[tests-url]: https://circleci.com/gh/shellscape/webpack-log
+
+[cover]: https://codecov.io/gh/shellscape/webpack-log/branch/master/graph/badge.svg
+[cover-url]: https://codecov.io/gh/shellscape/webpack-log
+
+[size]: https://packagephobia.now.sh/badge?p=webpack-log
+[size-url]: https://packagephobia.now.sh/result?p=webpack-log
+
+[https]: https://nodejs.org/api/https.html#https_https_createserver_options_requestlistener
+[http2]: https://nodejs.org/api/http2.html#http2_http2_createserver_options_onrequesthandler
+[http2tls]: https://nodejs.org/api/http2.html#http2_http2_createsecureserver_options_onrequesthandler
 
 <div align="center">
-  <img width="160" height="160" src="docs/logo.svg">
-  <a href="https://github.com/webpack/webpack">
-    <img width="180" height="180" src="https://webpack.js.org/assets/icon-square-big.svg">
-  </a>
-  <h1>webpack Log</h1>
-  <p>A common logging module for the webpack ecosystem</p>
+	<img width="180" src="https://raw.githubusercontent.com/shellscape/webpack-log/master/assets/log.svg?sanitize=true" alt="webpack-log"><br/><br/>
 </div>
+
+[![tests][tests]][tests-url]
+[![cover][cover]][cover-url]
+[![size][size]][size-url]
+[![libera manifesto](https://img.shields.io/badge/libera-manifesto-lightgrey.svg)](https://liberamanifesto.com)
+
+# webpack-log
+
+A logger for the Webpack ecosystem.
+
+<a href="https://www.patreon.com/shellscape">
+  <img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+</a>
+
+_Please consider donating if you find this project useful._
+
+## Requirements
+
+This module requires an [LTS](https://github.com/nodejs/Release) Node version (v8.0.0+).
 
 ## Install
 
-```bash
-npm i -D webpack-log
-```
+Using npm:
 
-> ⚠️ We do not recommend installing this module globally
+```console
+npm install webpack-log --save-dev
+```
 
 ## Usage
 
+Create a `webpack.config.js` file:
+
 ```js
-const log = require('webpack-log');
-const logger = log({ name: 'wds' });
+const getLogger = require('webpack-log');
+const log = getLogger({ name: 'webpack-batman' });
 
-logger.info('Server Starting');
+log.info('Jingle Bells, Batman Smells');
+log.warn('Robin laid an egg');
+log.error('The Batmobile lost a wheel');
+log.debug('And the Joker got away');
 ```
-
-![output](docs/output.png)
-
-> ℹ️ The logger returned is unique by default, due to the nature of the `webpack` ecosystem. Please reference the [`unique`](#unique) option below for disabling this feature and to **force caching**
 
 ## Options
 
-|             Name              |    Type     |    Default     | Description             |
-| :---------------------------: | :---------: | :------------: | :---------------------- |
-|      [**`name`**](#name)      | `{String}`  | `''<unknown>'` | Log Name (**Required**) |
-|     [**`level`**](#level)     | `{String}`  |    `'info'`    | Log Level               |
-|    [**`unique`**](#unique)    | `{Boolean}` |     `true`     | Log Uniqueness          |
-| [**`timestamp`**](#timestamp) | `{Boolean}` |    `false`     | Log Timestamps          |
-
-### `name`
-
-Specifies the name of the log to create. **This option is required**, and used to differentiate between loggers when `webpack-log` is used in multiple projects
-executing in the same process
-
-```js
-const logger = log({ name: 'wds' });
-```
-
 ### `level`
+Type: `String`<br>
+Default: `info`
 
 Specifies the level the logger should use. A logger will not produce output for
-any log level _beneath_ the specified level. Available levels and order are:
+any log level _beneath_ the specified level. Valid level names, and their order are:
 
 ```js
-['info', 'warn', 'error', 'trace', 'debug', 'silent'];
+[
+  'trace',
+  'debug',
+  'info',
+  'warn',
+  'error',
+  'silent'
+]
 ```
 
-```js
-const logger = log({ level: 'error' });
+For example, If a level was passed as `{ level: 'warn'}` then only calls to `warn` and `error` will be displayed in the terminal.
 
-logger.error(err);
-```
+### `name`
+Type: `String`<br>
+Default: `<webpack-log>`
 
-> ℹ️ The level names shown above correspond to the available logging methods,
-> with the notable exception of the `silent` level
-
-### `unique`
-
-If `false`, instructs the logger to used cached versions of a log with the same name. Due to the nature of the `webpack` ecosystem and multiple plugin/loader usage in the same process, loggers are created as unique instances by default. By passing `false` for this property, the module is instructed to cache the requested logger
-
-```js
-const logger = log({ unique: true });
-```
+Specifies the name of the logger to create. This value will be part of the log output prefix.
 
 ### `timestamp`
+Type: `Boolean`<br>
+Default: `false`
 
-If `true`, instructs the logger to display a timestamp for log output, preceding
-all other data
+If `true`, the logger will display a timestamp for log output, preceding all other data
 
-```js
-const logger = log({ timestamp: true });
-```
+### `unique`
+Type: `Boolean`<br>
+Default: `true`
 
-[npm]: https://img.shields.io/npm/v/webpack-log.svg
-[npm-url]: https://npmjs.com/package/webpack-log
-[node]: https://img.shields.io/node/v/webpack-log.svg
-[node-url]: https://nodejs.org
-[deps]: https://david-dm.org/webpack-contrib/webpack-log.svg
-[deps-url]: https://david-dm.org/webpack-contrib/webpack-log
-[test]: http://img.shields.io/travis/webpack-contrib/webpack-log.svg
-[test-url]: https://travis-ci.org/webpack-contrib/webpack-log
-[cover]: https://codecov.io/gh/webpack-contrib/webpack-log/branch/master/graph/badge.svg
-[cover-url]: https://codecov.io/gh/webpack-contrib/webpack-log
-[chat]: https://badges.gitter.im/webpack/webpack.svg
-[chat-url]: https://gitter.im/webpack/webpack
+If `false`, the logger will use cached versions of a log with the same name. Due to the nature of the `webpack` ecosystem and multiple plugin/loader use in the same process, loggers are created as unique instances by default.
+
+## Meta
+
+[CONTRIBUTING](./.github/CONTRIBUTING.md)
+
+[LICENSE (Mozilla Public License)](./LICENSE)
