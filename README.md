@@ -7,10 +7,6 @@
 [size]: https://packagephobia.now.sh/badge?p=webpack-log
 [size-url]: https://packagephobia.now.sh/result?p=webpack-log
 
-[https]: https://nodejs.org/api/https.html#https_https_createserver_options_requestlistener
-[http2]: https://nodejs.org/api/http2.html#http2_http2_createserver_options_onrequesthandler
-[http2tls]: https://nodejs.org/api/http2.html#http2_http2_createsecureserver_options_onrequesthandler
-
 <div align="center">
 	<img width="180" src="https://raw.githubusercontent.com/shellscape/webpack-log/master/assets/log.svg?sanitize=true" alt="webpack-log"><br/><br/>
 </div>

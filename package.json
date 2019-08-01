@@ -1,6 +1,6 @@
 {
   "name": "webpack-log",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A Development Server in a Webpack Plugin",
   "license": "MPL-2.0",
   "repository": "shellscape/webpack-log",
