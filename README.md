@@ -44,7 +44,7 @@ npm install webpack-log --save-dev
 
 ## Usage
 
-Create a `webpack.config.js` file:
+Create a new logger and use it to log something wild:
 
 ```js
 const getLogger = require('webpack-log');
@@ -55,6 +55,12 @@ log.warn('Robin laid an egg');
 log.error('The Batmobile lost a wheel');
 log.debug('And the Joker got away');
 ```
+
+And there will appear magic in your console:
+
+<div align="center">
+	<img width="369" src="assets/demo.png" alt="console magic"><br/><br/>
+</div>
 
 ## Options
 
