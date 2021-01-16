@@ -7,7 +7,6 @@
   "author": "shellscape",
   "homepage": "https://github.com/shellscape/webpack-log",
   "bugs": "https://github.com/shellscape/webpack-log/issues",
-  "bin": "",
   "main": "lib/index.js",
   "engines": {
     "node": ">= 8.0.0"
